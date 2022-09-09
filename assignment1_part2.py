@@ -8,4 +8,5 @@ class Book:
 
 
 if __name__ == "__main__":
-    pass
+    """Adding a comment"""
+    print("an example")
