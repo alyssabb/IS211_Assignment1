@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 style="margin-top: 50px; margin-bottom: 20px;">Make a Post</h1>
+
+<form method="POST">
+  <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      class="form-control"
+      placeholder="Enter Title"
+      value="{{post.title if post is defined}}"
+    />
+  <label for="text">Content</label>
+  <textarea name="text" id="text" class="form-control">
+{{post.text if post is defined}}
+  </textarea>
+  <br />
+  <div style="display: flex; gap: 5px;">
+    <div align="left">
+      <button type="submit" class="btn btn-lg btn-primary">Post</button>
+    </div>
+    <br />
+    <div align="left">
+      <a href="/"
+        ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+      >
+    </div>
+  </div>
+</form>
+{% endblock %}

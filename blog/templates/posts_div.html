@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<div style="display: flex; margin-top: 50px; margin-bottom: 20px;">
+  <div style="width: 50%;">
+    <h1 style="margin: 0">{% block header %}Posts{% endblock %}</h1>
+  </div>
+  {% if user.id is defined  %}
+  <div style="width: 50%;">
+    <div style="text-align: right;">
+      <a href="/create-post"
+        ><button type="button" class="btn btn-primary btn-lg">
+          Create a Post
+        </button></a
+      >
+    </div>
+  </div>
+  {% endif %}
+</div>
+<div id="posts">
+  {% for post in posts %}
+  <div class="card border-dark">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>{{post.title}}</span>
+      {% if user.id == post.author %}
+      <div class="btn-group">
+        <a
+          href="/edit-post/{{post.id}}"
+          type="button"
+          class="btn btn-sm btn-primary mr-2"
+        >Edit</a>
+        <a
+          href="/delete-post/{{post.id}}"
+          type="button"
+          class="btn btn-sm btn-danger"
+        >Delete</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <div class="card-text">{{post.text}}</div>
+    </div>
+    <div class="card-footer text-muted" style="display: flex;">
+      <div style="width: 50%;">
+        {{post.date_created}}
+      </div>
+      <div style="width: 50%; text-align: right;">
+        Author: {{post.user.username}}
+      </div>
+    </div>
+  </div>
+  <br/ > {% endfor %}
+</div>
+{% block footer %}
+
+</div>
+{% endblock %} {% endblock %}
